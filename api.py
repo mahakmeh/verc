@@ -1,23 +1,122 @@
 from fastapi import FastAPI, Query
 from fastapi.middleware.cors import CORSMiddleware
-import json
 
 app = FastAPI()
 
 # Enable CORS for all origins
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allow all origins
+    allow_origins=["*"],
     allow_methods=["GET"],
     allow_headers=["*"],
 )
 
-# Load marks from JSON file at startup
-with open("q-vercel-python.json") as f:
-    marks_db = json.load(f)
+marks_data = {
+    "h71KLE": 33,
+    "AR": 7,
+    "i1jwnu73k": 17,
+    "n4YBjDEa": 2,
+    "2": 26,
+    "YH6jeNb6w": 51,
+    "m5ZRzvK": 79,
+    "KGgvmf": 10,
+    "4hKRlx33": 18,
+    "w0kl": 84,
+    "66NyMTm": 8,
+    "KF0aZ": 61,
+    "yGct": 38,
+    "mt4": 23,
+    "ivXhagt6": 96,
+    "y2BbH4oP": 45,
+    "wTam08k": 23,
+    "sfKpCImr7": 48,
+    "k": 74,
+    "pw": 4,
+    "CRieGTYg": 8,
+    "kuTaBQ2": 85,
+    "yBahat157d": 31,
+    "tyXxzB6NVX": 7,
+    "HuUi": 33,
+    "CImzGUf1": 53,
+    "7k": 18,
+    "zD0sp": 2,
+    "3jkL8dL1": 25,
+    "j0GW": 76,
+    "M": 5,
+    "Fde9Z0": 59,
+    "iBNVk7JBG": 44,
+    "AC13q3W": 95,
+    "UTvcTp": 16,
+    "g": 61,
+    "URt1MhZ": 65,
+    "akqk7TO": 85,
+    "iDyyv": 39,
+    "pwfOM7": 37,
+    "d2pGIk": 58,
+    "7N0": 85,
+    "vrS": 14,
+    "QSA1o8wJsw": 62,
+    "uU": 42,
+    "2akjCi": 15,
+    "O": 51,
+    "3R7bO4fWb": 58,
+    "46X": 40,
+    "lYskUIgAaq": 35,
+    "Y6": 59,
+    "Omo3mkGB": 13,
+    "OJPc4W": 55,
+    "3YWkVVB": 45,
+    "aH": 24,
+    "GpffAQYK0": 22,
+    "liqU3O2LM": 4,
+    "SryOgi9IK": 39,
+    "bIejvp6d": 12,
+    "8ysw": 39,
+    "gYtR7yy": 71,
+    "gl0OqM3Gwa": 63,
+    "dTQHrmX": 27,
+    "BmODPcusQ": 91,
+    "8eLPD4o": 75,
+    "eu47": 98,
+    "W4yX6": 67,
+    "zXpx": 52,
+    "G2EJ9Um6": 48,
+    "OYLV6RPwgE": 95,
+    "lyL32cp6I": 27,
+    "5H6": 18,
+    "IiFMc": 58,
+    "mtvqppGb3": 87,
+    "P": 60,
+    "Q4pY": 72,
+    "oNjO": 3,
+    "0ecbhVBP": 37,
+    "gU": 76,
+    "tOdi": 77,
+    "xXGxgUu": 36,
+    "Cn": 4,
+    "Lwir": 70,
+    "mdrBMNV67j": 56,
+    "LD2AN": 99,
+    "04Q": 25,
+    "dBFY2mjg": 68,
+    "iXzz": 97,
+    "hT": 2,
+    "mEC0t0n": 94,
+    "LKp7JD": 62,
+    "h": 74,
+    "u1sjM1u": 82,
+    "iMpd9xfO": 13,
+    "aHoWvXq": 69,
+    "aYTJdzCHwR": 15,
+    "7wp9j": 36,
+    "eNmUVD1HfA": 94,
+    "cWAb": 74,
+    "dS1YKEixS5": 85
+}
+
 
 @app.get("/api")
 async def get_marks(name: list[str] = Query(...)):
-    # For each requested name, get the marks or 0 if not found
-    result = [marks_db.get(n, 0) for n in name]
+    # name will be a list of student names from query parameters
+    result = [marks_data.get(n, None) for n in name]
     return {"marks": result}
